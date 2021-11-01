@@ -10,3 +10,6 @@ gradle --build-file build.gradle work:bootjar
 java 실행
 1. 빌드 된 jar 파일의 위치로 이동.
 2. java -jar work-0.0.1-SNAPSHOT.jar
+
+sql
+1. 첨부된 work.sql 파일 안의 sql을 실행
