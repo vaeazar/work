@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="application.properties"/>
+
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias alias="HashMap" type="java.util.HashMap"/>
+        <typeAlias alias="ArrayList" type="java.util.ArrayList"/>
+        <typeAlias alias="Product" type="com.test.work.domain.Product"/>
+    </typeAliases>
+
+    <environments default="matchMaster">
+        <environment id="matchMaster">
+            <transactionManager type="JDBC"/>
+            <dataSource type="com.test.work.config.HikariPoolConfig">
+                <property name="driverClassName" value="${jdbc.driver.maria}"/>
+                <property name="jdbcUrl" value="${jdbc.url.maria}"/>
+                <property name="username" value="${jdbc.username.maria}"/>
+                <property name="password" value="${jdbc.password.maria}"/>
+                <property name="minimumIdle" value="10"/>
+                <property name="maximumPoolSize" value="20"/>
+                <property name="maxLifetime" value="280000"/>
+                <property name="connectionTimeout" value="3000"/>
+
+                <property name="poolName" value="SpringBootHikariCP"/>
+                <property name="dataSourceProperties.cachePrepStmts" value="true"/>
+                <property name="dataSourceProperties.prepStmtCacheSize" value="250"/>
+                <property name="dataSourceProperties.prepStmtCacheSqlLimit" value="2048"/>
+                <property name="dataSourceProperties.connectionTestQuery" value="select 1"/>
+                <property name="dataSourceProperties.useServerPrepStmts" value="true"/>
+                <property name="dataSourceProperties.useLocalSessionState" value="true"/>
+                <property name="dataSourceProperties.rewriteBatchedStatements" value="true"/>
+                <property name="dataSourceProperties.cacheResultSetMetadata" value="true"/>
+                <property name="dataSourceProperties.cacheServerConfiguration" value="true"/>
+                <property name="dataSourceProperties.elideSetAutoCommits" value="true"/>
+                <property name="dataSourceProperties.maintainTimeStats" value="false"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="sqlmap/sql/product.xml"/>
+    </mappers>
+</configuration>

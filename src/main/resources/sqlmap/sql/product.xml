@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="work">
+
+  <!--clickhouse session_hist table DAU select-->
+  <select id="selectProductList" resultType="Product">
+    SELECT
+        PRODUCT_ID
+       ,PRODUCT_CATEGORY
+       ,PRODUCT_CATEGORY_CHILD
+       ,PRODUCT_NAME
+       ,PRODUCT_STATUS
+    FROM   PRODUCT
+    WHERE 1 = 1
+    <if test="productCategory != ''">
+      AND    PRODUCT_CATEGORY = #{productCategory}
+    </if>
+    <if test="productCategoryChild != ''">
+      AND    PRODUCT_CATEGORY_CHILD = #{productCategoryChild}
+    </if>
+    <if test="productId != 0">
+      AND    PRODUCT_ID = #{productId}
+    </if>
+    ORDER BY PRODUCT_ID
+  </select>
+
+  <select id="selectProductInfo" resultType="Product">
+    SELECT
+    PRODUCT_ID
+    ,PRODUCT_CATEGORY
+    ,PRODUCT_CATEGORY_CHILD
+    ,PRODUCT_NAME
+    ,PRODUCT_STATUS
+    FROM   PRODUCT
+    WHERE PRODUCT_ID = #{productId}
+  </select>
+
+  <insert id="insertProduct">
+    INSERT INTO PRODUCT (PRODUCT_CATEGORY, PRODUCT_CATEGORY_CHILD, PRODUCT_NAME, PRODUCT_STATUS)
+    VALUES (#{productCategory}, #{productCategoryChild}, #{productName}, #{productStatus})
+  </insert>
+
+  <update id="updateProduct">
+    UPDATE PRODUCT
+    SET
+        PRODUCT_NAME = #{productName}
+        ,PRODUCT_CATEGORY = #{productCategory}
+        ,PRODUCT_CATEGORY_CHILD = #{productCategoryChild}
+        ,PRODUCT_STATUS = #{productStatus}
+    WHERE PRODUCT_ID = #{productId}
+  </update>
+
+  <delete id="deleteProduct">
+    DELETE FROM PRODUCT
+    WHERE PRODUCT_ID = #{productId}
+  </delete>
+</mapper>

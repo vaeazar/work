@@ -1,0 +1,55 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="product.js"></script>
+  <title>Main</title>
+  <style>
+    td {
+      border: 1px solid;
+    }
+  </style>
+</head>
+<body>
+<h1>상품 메뉴</h1>
+<ui>
+  <li><a href="/productList">상품조회</a></li>
+  <li><a href="/productUnregister">상품제거</a></li>
+  <li><a href="/productChanger">상품수정</a></li>
+  <li><a href="/productRegister">상품등록</a></li>
+</ui>
+<div>
+  <h1>상품 조회</h1>
+  <ui>
+    <li>
+      상품 카테고리<input id="product-category">
+    </li>
+    <li>
+      상품 하위 카테고리<input id="product-category-child">
+    </li>
+    <li>
+      상품 ID : <input id="product-id">
+    </li>
+  </ui>
+  <table>
+    <thead>
+    <tr>
+      <td>ID</td>
+      <td>CATEGORY</td>
+      <td>CATEGORY_CHILD</td>
+      <td>NAME</td>
+      <td>STATUS</td>
+    </tr>
+    </thead>
+    <tbody id="productList">
+
+    </tbody>
+  </table>
+</div>
+<button th:onclick="productList()">
+  상품조회
+</button>
+</body>
+</html>
