@@ -13,3 +13,6 @@ java 실행
 
 sql
 1. 첨부된 work.sql 파일 안의 sql을 실행
+2. create user 'work'@'%' identified by 'work';
+3. grant all privileges on *.* to 'work'@'%'; 
+4. FLUSH PRIVILEGES;

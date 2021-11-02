@@ -21,7 +21,7 @@ function productList() {
     if (xhr.status == 200) {
       let jsonTemp = JSON.parse(xhr.response);
       let html = '';
-      jsonTemp.forEach(function(e) {
+      jsonTemp.data.forEach(function(e) {
         html += '<tr>';
         html += '  <td>';
         html += e.productId;

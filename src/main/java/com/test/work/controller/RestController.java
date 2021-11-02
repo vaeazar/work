@@ -42,20 +42,22 @@ public class RestController {
       @PathVariable Optional<String> productCategory
       , @PathVariable Optional<String> productCategoryChild
       , @PathVariable Optional<Integer> productId) {
-    List<Product> responseData = new ArrayList<>();
+    Map<String, Object> responseData = new HashMap<>();
+    List<Product> getProductList = new ArrayList<>();
     Product selectKeys = new Product(
         productId.orElse(0)
         , productCategory.orElse("")
         , productCategoryChild.orElse(""));
 
-    responseData = productService.productList(selectKeys);
+    getProductList = productService.productList(selectKeys);
+    responseData.put("data",getProductList);
 
     return new ResponseEntity(responseData, HttpStatus.OK);
   }
 
   @GetMapping(value = {"/product-info/{productId}", "/product-info"})
   @ResponseBody
-  public ResponseEntity productList(
+  public ResponseEntity productInfo(
       @PathVariable Optional<Integer> productId) {
     Map<String, Object> responseData = new HashMap<>();
     Product productInfo;
@@ -80,10 +82,14 @@ public class RestController {
     if (product.invalidValue()) {
       responseData.put("message", "상품 카테고리와 상품명은 필수입니다.");
       return new ResponseEntity(responseData, HttpStatus.BAD_REQUEST);
+
     } else {
       flag = productService.productRegister(product);
     }
     if (flag == -1) {
+      responseData.put("message", "상품 등록에 실패했습니다.");
+      return new ResponseEntity(responseData, HttpStatus.BAD_REQUEST);
+    } else if (flag == 0) {
       responseData.put("message", "상품 등록에 실패했습니다.");
       return new ResponseEntity(responseData, HttpStatus.BAD_REQUEST);
     } else {
@@ -107,6 +113,9 @@ public class RestController {
     }
     if (flag == -1) {
       responseData.put("message", "상품 수정에 실패했습니다.");
+      return new ResponseEntity(responseData, HttpStatus.BAD_REQUEST);
+    } else if (flag == 0) {
+      responseData.put("message", "해당 상품 ID가 없습니다.");
       return new ResponseEntity(responseData, HttpStatus.BAD_REQUEST);
     } else {
       responseData.put("message", "상품이 성공적으로 수정되었습니다.");
@@ -132,6 +141,9 @@ public class RestController {
     }
     if (flag == -1) {
       responseData.put("message", "상품 삭제에 실패했습니다.");
+      return new ResponseEntity(responseData, HttpStatus.BAD_REQUEST);
+    } else if (flag == 0) {
+      responseData.put("message", "해당 상품 ID가 없습니다.");
       return new ResponseEntity(responseData, HttpStatus.BAD_REQUEST);
     } else {
       responseData.put("message", "상품이 성공적으로 삭제되었습니다.");

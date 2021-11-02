@@ -12,7 +12,7 @@
        ,PRODUCT_CATEGORY_CHILD
        ,PRODUCT_NAME
        ,PRODUCT_STATUS
-    FROM   PRODUCT
+    FROM   product
     WHERE 1 = 1
     <if test="productCategory != ''">
       AND    PRODUCT_CATEGORY = #{productCategory}
@@ -33,17 +33,17 @@
     ,PRODUCT_CATEGORY_CHILD
     ,PRODUCT_NAME
     ,PRODUCT_STATUS
-    FROM   PRODUCT
+    FROM   product
     WHERE PRODUCT_ID = #{productId}
   </select>
 
   <insert id="insertProduct">
-    INSERT INTO PRODUCT (PRODUCT_CATEGORY, PRODUCT_CATEGORY_CHILD, PRODUCT_NAME, PRODUCT_STATUS)
+    INSERT INTO product (PRODUCT_CATEGORY, PRODUCT_CATEGORY_CHILD, PRODUCT_NAME, PRODUCT_STATUS)
     VALUES (#{productCategory}, #{productCategoryChild}, #{productName}, #{productStatus})
   </insert>
 
   <update id="updateProduct">
-    UPDATE PRODUCT
+    UPDATE product
     SET
         PRODUCT_NAME = #{productName}
         ,PRODUCT_CATEGORY = #{productCategory}
@@ -53,7 +53,7 @@
   </update>
 
   <delete id="deleteProduct">
-    DELETE FROM PRODUCT
+    DELETE FROM product
     WHERE PRODUCT_ID = #{productId}
   </delete>
 </mapper>
