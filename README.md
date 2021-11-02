@@ -6,6 +6,12 @@ GRADLE = 7.2
 
 DB = maria version 10
 
+DB 정보
+ - database : work
+ - table : product
+ - user : work
+ - password : work
+
 build 명령어
 gradle --build-file build.gradle work:bootjar
 
