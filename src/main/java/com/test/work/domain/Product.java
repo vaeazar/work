@@ -3,6 +3,9 @@ package com.test.work.domain;
 
 import lombok.Data;
 
+/**
+ * 상품 정보
+ */
 @Data
 public class Product {
 

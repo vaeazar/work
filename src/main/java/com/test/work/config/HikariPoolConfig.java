@@ -1,11 +1,3 @@
-/*
- * COPYRIGHT (c) Enliple 2020
- * This software is the proprietary of Enliple
- *
- * @author <a href="mailto:kwseo@enliple.com">kwseo</a>
- * @since 2020-08-06
- */
-
 package com.test.work.config;
 
 import com.zaxxer.hikari.HikariDataSource;

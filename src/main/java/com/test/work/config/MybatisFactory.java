@@ -1,11 +1,3 @@
-/*
- * COPYRIGHT (c) Enliple 2019
- * This software is the proprietary of Enliple
- *
- * @author <a href="mailto:jshan@enliple.com">jshan</a>
- * @since 2019. 4. 23
- */
-
 package com.test.work.config;
 
 import com.test.work.config.exception.MybatisFactoryException;

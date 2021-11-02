@@ -32,6 +32,14 @@ public class RestController {
     this.productService = productService;
   }
 
+  /**
+   * 상품 조회 REST API
+   *
+   * @param productCategory 상품 상위 카테고리
+   * @param productCategoryChild 상품 하위 카테고리
+   * @param productId 상품 ID
+   * @return
+   */
   @GetMapping(value = {"/product-list/{productCategory}/{productCategoryChild}/{productId}"
       , "/product-list/{productCategory}/{productCategoryChild}"
       , "/product-list/{productCategory}"
@@ -55,6 +63,11 @@ public class RestController {
     return new ResponseEntity(responseData, HttpStatus.OK);
   }
 
+  /**
+   * 한 상품 조회 REST API (update에 사용 가능)
+   * @param productId 상품 ID
+   * @return
+   */
   @GetMapping(value = {"/product-info/{productId}", "/product-info"})
   @ResponseBody
   public ResponseEntity productInfo(
@@ -73,6 +86,11 @@ public class RestController {
     return new ResponseEntity(responseData, HttpStatus.OK);
   }
 
+  /**
+   * 상품 등록 REST API
+   * @param product 상품 등록 정보
+   * @return
+   */
   @PostMapping(value = "/product-register", consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public ResponseEntity productRegister(@RequestBody Product product) {
@@ -99,6 +117,11 @@ public class RestController {
     return new ResponseEntity(responseData, HttpStatus.CREATED);
   }
 
+  /**
+   * 상품 수정 REST API
+   * @param product 상품 수정 정보
+   * @return
+   */
   @PutMapping(value = "/product-changer", consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public ResponseEntity productChanger(@RequestBody Product product) {
@@ -124,6 +147,11 @@ public class RestController {
     return new ResponseEntity(responseData, HttpStatus.OK);
   }
 
+  /**
+   * 상품 제거 REST API
+   * @param productId 상품 ID
+   * @return
+   */
   @DeleteMapping(value = {"/product-unregister/{productId}"
       , "/product-unregister"})
   @ResponseBody

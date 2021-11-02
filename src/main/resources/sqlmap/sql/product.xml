@@ -4,7 +4,6 @@
 
 <mapper namespace="work">
 
-  <!--clickhouse session_hist table DAU select-->
   <select id="selectProductList" resultType="Product">
     SELECT
         PRODUCT_ID
