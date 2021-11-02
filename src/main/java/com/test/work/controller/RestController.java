@@ -106,7 +106,7 @@ public class RestController {
     int flag = 0;
 
     if (product.invalidValue() || product.invalidId()) {
-      responseData.put("message", "상품 카테고리와 상품명은 필수입니다.");
+      responseData.put("message", "상품 카테고리와 상품명, ID는 필수입니다.");
       return new ResponseEntity(responseData, HttpStatus.BAD_REQUEST);
     } else {
       flag = productService.productChanger(product);
@@ -133,7 +133,7 @@ public class RestController {
     Map<String, Object> deleteKeys = new HashMap<>();
     deleteKeys.put("productId", productId.orElse(0));
     int flag = 0;
-    if (!productId.isPresent()) {
+    if (productId.isEmpty()) {
       responseData.put("message", "상품 ID 값이 없습니다.");
       return new ResponseEntity(responseData, HttpStatus.BAD_REQUEST);
     } else {
