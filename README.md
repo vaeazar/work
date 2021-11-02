@@ -38,9 +38,11 @@ sql
     1. GET /product-list/{productCategory}/{productCategoryChild}/{productId}
         - 값을 입력하지 않으면 각각 해당하는 상위 카테고리 전체가 리턴됩니다.
     2. GET /product-info/{productId}
+        - 값을 입력하지 않으면 400 에러가 리턴됩니다.
     3. POST /product-register
     4. PUT /product-changer
     5. DELETE /product-unregister/{productId}
+        - 값을 입력하지 않으면 400 에러가 리턴됩니다.
     
 - 테스트코드는 test/java/com/test/work/productTest 내부에 있습니다.
 
